@@ -13,6 +13,8 @@ import { GetQuestionsBySlugController } from './controllers/get-question-by-slug
 import { GetQuestionBySlugUseCase } from '@/domain/forum/application/use-cases/get-question-by-slug'
 import { EditQuestionController } from './controllers/edit-question-controller'
 import { UpdateQuestionUseCase } from '@/domain/forum/application/use-cases/update-question'
+import { DeleteQuestionController } from './controllers/delete-question-controller'
+import { DeleteQuestionUseCase } from '@/domain/forum/application/use-cases/delete-question'
 
 @Module({
   imports: [DatabaseModule, CryptographyModule],
@@ -23,6 +25,7 @@ import { UpdateQuestionUseCase } from '@/domain/forum/application/use-cases/upda
     FetchRecentsquestionstroller,
     GetQuestionsBySlugController,
     EditQuestionController,
+    DeleteQuestionController,
   ],
   providers: [
     CreateQuestionUseCase,
@@ -31,6 +34,7 @@ import { UpdateQuestionUseCase } from '@/domain/forum/application/use-cases/upda
     AuthenticateStudentUseCase,
     GetQuestionBySlugUseCase,
     UpdateQuestionUseCase,
+    DeleteQuestionUseCase,
   ],
 })
 // eslint-disable-next-line prettier/prettier

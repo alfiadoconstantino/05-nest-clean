@@ -7,7 +7,7 @@ import request from 'supertest'
 import { QuestionFactory } from 'test/factories/make-question'
 import { StudentFactory } from 'test/factories/make-student'
 
-describe('Edit Question (E2E)', () => {
+describe('Delete Question (E2E)', () => {
   let app: INestApplication
   let studentFactory: StudentFactory
   let questionFactory: QuestionFactory
@@ -28,7 +28,7 @@ describe('Edit Question (E2E)', () => {
     await app.init()
   })
 
-  test('[PUT] /questions/:id', async () => {
+  test('[DELETE] /questions/:id', async () => {
     const user = await studentFactory.makePrismaStudent()
 
     const accessToken = jwt.sign({ sub: user.id.toString() })
@@ -38,12 +38,9 @@ describe('Edit Question (E2E)', () => {
     })
 
     const response = await request(app.getHttpServer())
-      .put(`/questions/${question.id.toString()}`)
+      .delete(`/questions/${question.id.toString()}`)
       .set('Authorization', `Bearer ${accessToken}`)
-      .send({
-        title: 'new question',
-        content: 'question content',
-      })
+      .send()
 
     expect(response.statusCode).toBe(204)
   })

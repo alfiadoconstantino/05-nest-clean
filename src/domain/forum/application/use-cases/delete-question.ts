@@ -2,6 +2,7 @@ import { left, right, type Either } from '@/core/either'
 import { QuestionRepository } from '../repositories/question-repository'
 import { ResourceNotFoundError } from '@/core/errors/resources-not-found-error'
 import { NotAllowedError } from '@/core/errors/not-allowed-error'
+import { Injectable } from '@nestjs/common'
 
 interface DeleteQuestionUseCaseRequest {
   questionId: string
@@ -13,6 +14,7 @@ type DeleteQuestionUseCaseResponse = Either<
   null
 >
 
+@Injectable()
 export class DeleteQuestionUseCase {
   // eslint-disable-next-line prettier/prettier
   constructor(private questionRepository: QuestionRepository) {}
