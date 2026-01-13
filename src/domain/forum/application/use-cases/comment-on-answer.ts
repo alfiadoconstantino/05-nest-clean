@@ -1,7 +1,7 @@
 import { UniqueEntityId } from '@/core/entities/unique-entity-id'
 import { AnswerComment } from '../../enterprise/entities/anser-comment'
-import type { AnswerCommentsRepository } from '../repositories/answer-comments-repository'
-import type { AnswersRepository } from '../repositories/answers-repository'
+import { AnswerCommentsRepository } from '../repositories/answer-comments-repository'
+import { AnswersRepository } from '../repositories/answers-repository'
 import { left, right, type Either } from '@/core/either'
 import { ResourceNotFoundError } from '@/core/errors/resources-not-found-error'
 
@@ -21,7 +21,7 @@ export class CommentOnAnswerUseCase {
     private answerRepository: AnswersRepository,
     private answerCommentsRepository: AnswerCommentsRepository,
     // eslint-disable-next-line prettier/prettier
-  ) { }
+  ) {}
 
   async execute({
     authorId,

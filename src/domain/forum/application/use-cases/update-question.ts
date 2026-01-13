@@ -1,11 +1,12 @@
 import { left, right, type Either } from '@/core/either'
-import type { QuestionRepository } from '../repositories/question-repository'
+import { QuestionRepository } from '../repositories/question-repository'
 import { ResourceNotFoundError } from '@/core/errors/resources-not-found-error'
 import { NotAllowedError } from '@/core/errors/not-allowed-error'
-import type { QuestionAttachmentRepository } from '../repositories/question-attachments-repository'
+import { QuestionAttachmentRepository } from '../repositories/question-attachments-repository'
 import { QuestionAttachmentList } from '../../enterprise/entities/question-attachment-list'
 import { QuestionAttachment } from '../../enterprise/entities/question-attachment'
 import { UniqueEntityId } from '@/core/entities/unique-entity-id'
+import { Injectable } from '@nestjs/common'
 
 interface UpdateQuestionUseCaseRequest {
   questionId: string
@@ -20,12 +21,13 @@ type UpdateQuestionUseCaseResponse = Either<
   null
 >
 
+@Injectable()
 export class UpdateQuestionUseCase {
   constructor(
     private questionRepository: QuestionRepository,
     private questionAttachmentsRepository: QuestionAttachmentRepository,
     // eslint-disable-next-line prettier/prettier
-  ) { }
+  ) {}
 
   async execute({
     questionId,

@@ -1,5 +1,5 @@
 import { UniqueEntityId } from '@/core/entities/unique-entity-id'
-import type { AnswersRepository } from '../repositories/answers-repository'
+import { AnswersRepository } from '../repositories/answers-repository'
 import { Answer } from '../../enterprise/entities/answer'
 import { right, type Either } from '@/core/either'
 import { AnswerAttachment } from '../../enterprise/entities/answer-attachment'
@@ -16,7 +16,7 @@ type AnswerQuestionUseCaseResponse = Either<null, { answer: Answer }>
 
 export class AnswerQuestionUseCase {
   // eslint-disable-next-line prettier/prettier
-  constructor(private answersRepository: AnswersRepository) { }
+  constructor(private answersRepository: AnswersRepository) {}
 
   async execute({
     instructorId,

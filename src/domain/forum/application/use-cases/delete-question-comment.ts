@@ -1,5 +1,5 @@
 import { left, right, type Either } from '@/core/either'
-import type { QuestionCommentsRepository } from '../repositories/question-comments-repository'
+import { QuestionCommentsRepository } from '../repositories/question-comments-repository'
 import { ResourceNotFoundError } from '@/core/errors/resources-not-found-error'
 import { NotAllowedError } from '@/core/errors/not-allowed-error'
 
@@ -17,7 +17,7 @@ export class DeleteQuestionCommentUseCase {
   constructor(
     private questionCommentsRepository: QuestionCommentsRepository,
     // eslint-disable-next-line prettier/prettier
-  ) { }
+  ) {}
 
   async execute({
     authorId,

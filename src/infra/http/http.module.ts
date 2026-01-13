@@ -11,6 +11,8 @@ import { AuthenticateStudentUseCase } from '@/domain/forum/application/use-cases
 import { CryptographyModule } from '../cryptography/cryptography.module'
 import { GetQuestionsBySlugController } from './controllers/get-question-by-slug-controller'
 import { GetQuestionBySlugUseCase } from '@/domain/forum/application/use-cases/get-question-by-slug'
+import { EditQuestionController } from './controllers/edit-question-controller'
+import { UpdateQuestionUseCase } from '@/domain/forum/application/use-cases/update-question'
 
 @Module({
   imports: [DatabaseModule, CryptographyModule],
@@ -20,6 +22,7 @@ import { GetQuestionBySlugUseCase } from '@/domain/forum/application/use-cases/g
     CreateQuestionController,
     FetchRecentsquestionstroller,
     GetQuestionsBySlugController,
+    EditQuestionController,
   ],
   providers: [
     CreateQuestionUseCase,
@@ -27,6 +30,7 @@ import { GetQuestionBySlugUseCase } from '@/domain/forum/application/use-cases/g
     RegisterStudentUseCase,
     AuthenticateStudentUseCase,
     GetQuestionBySlugUseCase,
+    UpdateQuestionUseCase,
   ],
 })
 // eslint-disable-next-line prettier/prettier

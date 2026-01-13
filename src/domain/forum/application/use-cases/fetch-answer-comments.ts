@@ -1,6 +1,6 @@
 import { right, type Either } from '@/core/either'
 import type { AnswerComment } from '../../enterprise/entities/anser-comment'
-import type { AnswerCommentsRepository } from '../repositories/answer-comments-repository'
+import { AnswerCommentsRepository } from '../repositories/answer-comments-repository'
 
 interface FetchAnswerCommentsUseCaseRequest {
   answerId: string
@@ -16,7 +16,7 @@ type FetchAnswerCommentsUseCaseResponse = Either<
 
 export class FetchAnswerCommentsUseCase {
   // eslint-disable-next-line prettier/prettier
-  constructor(private answerCommentsRepository: AnswerCommentsRepository) { }
+  constructor(private answerCommentsRepository: AnswerCommentsRepository) {}
 
   async execute({
     answerId,

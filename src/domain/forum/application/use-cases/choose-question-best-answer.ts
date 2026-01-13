@@ -1,6 +1,6 @@
-import type { AnswersRepository } from '../repositories/answers-repository'
+import { AnswersRepository } from '../repositories/answers-repository'
 import type { Question } from '../../enterprise/entities/question'
-import type { QuestionRepository } from '../repositories/question-repository'
+import { QuestionRepository } from '../repositories/question-repository'
 import { left, right, type Either } from '@/core/either'
 import { ResourceNotFoundError } from '@/core/errors/resources-not-found-error'
 import { NotAllowedError } from '@/core/errors/not-allowed-error'
@@ -20,7 +20,7 @@ export class ChooseQuestionBestAnswerUseCase {
     private answersRepository: AnswersRepository,
     private questionRepository: QuestionRepository,
     // eslint-disable-next-line prettier/prettier
-  ) { }
+  ) {}
 
   async execute({
     answerId,

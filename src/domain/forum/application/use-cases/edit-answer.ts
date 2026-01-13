@@ -1,8 +1,8 @@
 import { left, right, type Either } from '@/core/either'
-import type { AnswersRepository } from '../repositories/answers-repository'
+import { AnswersRepository } from '../repositories/answers-repository'
 import { ResourceNotFoundError } from '@/core/errors/resources-not-found-error'
 import { NotAllowedError } from '@/core/errors/not-allowed-error'
-import type { AnswerAttachmentRepository } from '../repositories/answer-attachments-repository'
+import { AnswerAttachmentRepository } from '../repositories/answer-attachments-repository'
 import { AnswerAttachmentList } from '../../enterprise/entities/answer-attachment-list'
 import { AnswerAttachment } from '../../enterprise/entities/answer-attachment'
 import { UniqueEntityId } from '@/core/entities/unique-entity-id'
@@ -24,7 +24,7 @@ export class EditAnswerUseCase {
     private answersRepository: AnswersRepository,
     private answerAttachmentsRepository: AnswerAttachmentRepository,
     // eslint-disable-next-line prettier/prettier
-  ) { }
+  ) {}
 
   async execute({
     answerId,

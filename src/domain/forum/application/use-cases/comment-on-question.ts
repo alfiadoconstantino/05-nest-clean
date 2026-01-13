@@ -1,7 +1,7 @@
 import { UniqueEntityId } from '@/core/entities/unique-entity-id'
-import type { QuestionRepository } from '../repositories/question-repository'
+import { QuestionRepository } from '../repositories/question-repository'
 import { QuestionComment } from '../../enterprise/entities/question-comment'
-import type { QuestionCommentsRepository } from '../repositories/question-comments-repository'
+import { QuestionCommentsRepository } from '../repositories/question-comments-repository'
 import { left, right, type Either } from '@/core/either'
 import { ResourceNotFoundError } from '@/core/errors/resources-not-found-error'
 
@@ -23,7 +23,7 @@ export class CommentOnQuestionUseCase {
     private questionRepository: QuestionRepository,
     private questionCommentsRepository: QuestionCommentsRepository,
     // eslint-disable-next-line prettier/prettier
-  ) { }
+  ) {}
 
   async execute({
     authorId,

@@ -1,5 +1,5 @@
 import { left, right, type Either } from '@/core/either'
-import type { AnswersRepository } from '../repositories/answers-repository'
+import { AnswersRepository } from '../repositories/answers-repository'
 import { ResourceNotFoundError } from '@/core/errors/resources-not-found-error'
 import { NotAllowedError } from '@/core/errors/not-allowed-error'
 
@@ -15,7 +15,7 @@ type DeleteAnswerUseCaseResponse = Either<
 
 export class DeleteAnswerUseCase {
   // eslint-disable-next-line prettier/prettier
-  constructor(private answerRepository: AnswersRepository) { }
+  constructor(private answerRepository: AnswersRepository) {}
 
   async execute({
     answerId,

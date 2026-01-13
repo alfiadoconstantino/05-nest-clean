@@ -1,6 +1,6 @@
 import { right, type Either } from '@/core/either'
 import type { Answer } from '../../enterprise/entities/answer'
-import type { AnswersRepository } from '../repositories/answers-repository'
+import { AnswersRepository } from '../repositories/answers-repository'
 
 interface FetchQuestionAnswersUseCaseRequest {
   questionId: string
@@ -16,7 +16,7 @@ type FetchQuestionAnswersUseCaseResponse = Either<
 
 export class FetchQuestionAnswersUseCase {
   // eslint-disable-next-line prettier/prettier
-  constructor(private answerRepository: AnswersRepository) { }
+  constructor(private answerRepository: AnswersRepository) {}
 
   async execute({
     questionId,
