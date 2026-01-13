@@ -35,6 +35,8 @@ import { DeleteAnswerCommentController } from './controllers/delete-answer-comme
 import { DeleteAnswerCommentUseCase } from '@/domain/forum/application/use-cases/delete-answer-comment'
 import { FetchQuestionCommentsUseCase } from '@/domain/forum/application/use-cases/fetch-question-comments'
 import { FetchQuestionCommentController } from './controllers/fetch-question-comment.controller'
+import { FetchAnswerCommentController } from './controllers/fetch-answer-comment.controller'
+import { FetchAnswerCommentsUseCase } from '@/domain/forum/application/use-cases/fetch-answer-comments'
 
 @Module({
   imports: [DatabaseModule, CryptographyModule],
@@ -56,6 +58,7 @@ import { FetchQuestionCommentController } from './controllers/fetch-question-com
     CommentOnAnswerController,
     DeleteAnswerCommentController,
     FetchQuestionCommentController,
+    FetchAnswerCommentController,
   ],
   providers: [
     CreateQuestionUseCase,
@@ -75,6 +78,7 @@ import { FetchQuestionCommentController } from './controllers/fetch-question-com
     CommentOnAnswerUseCase,
     DeleteAnswerCommentUseCase,
     FetchQuestionCommentsUseCase,
+    FetchAnswerCommentsUseCase,
   ],
 })
 // eslint-disable-next-line prettier/prettier
