@@ -1,0 +1,32 @@
+import {
+  BadRequestException,
+  Controller,
+  Delete,
+  HttpCode,
+  Param,
+} from '@nestjs/common'
+
+import { DeleteAnswerUseCase } from '@/domain/forum/application/use-cases/delete-answer'
+import type { TokenPayloadSchema } from '@/infra/auth/jwt.strategy'
+import { CurrentUser } from '@/infra/auth/current-user-decorator'
+
+@Controller('answers/:id')
+export class DeleteAnswerController {
+  constructor(private deleteAnswerUseCase: DeleteAnswerUseCase) {} // eslint-disable-line
+
+  @Delete()
+  @HttpCode(204)
+  async handle(
+    @CurrentUser() user: TokenPayloadSchema,
+    @Param('id') answerId: string,
+  ) {
+    const userId = user.sub
+
+    const result = await this.deleteAnswerUseCase.execute({
+      answerId,
+      authorId: userId,
+    })
+
+    if (result.isLeft()) throw new BadRequestException()
+  }
+}
