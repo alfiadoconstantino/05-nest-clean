@@ -8,7 +8,7 @@ import { PrismaQuestionMapper } from '../mappers/prisma-question-mapper'
 @Injectable()
 export class PrismaQuestionsRepository implements QuestionRepository {
   // eslint-disable-next-line prettier/prettier
-  constructor(private prisma: PrismaService) { }
+  constructor(private prisma: PrismaService) {}
 
   async create(question: Question): Promise<void> {
     const data = PrismaQuestionMapper.toPrisma(question)
@@ -39,11 +39,9 @@ export class PrismaQuestionsRepository implements QuestionRepository {
   }
 
   async delete(question: Question): Promise<void> {
-    const data = PrismaQuestionMapper.toPrisma(question)
-
     await this.prisma.question.delete({
       where: {
-        id: data.id,
+        id: question.id.toString(),
       },
     })
   }
