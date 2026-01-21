@@ -68,6 +68,7 @@ describe('Update Question', () => {
       expect.objectContaining({ attachmentId: new UniqueEntityId('1') }),
       expect.objectContaining({ attachmentId: new UniqueEntityId('3') }),
     ])
+    expect(inMemoryQuestionAttachmentsRepository.items).toHaveLength(2)
   })
 
   it('Should not be able to update a question by another user', async () => {

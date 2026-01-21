@@ -28,5 +28,6 @@ describe('Create Question', () => {
     expect(
       inMemoryQuestionRepository.items[0].attachments.currentItems,
     ).toHaveLength(2)
+    expect(inMemoryQuestionAttachmentsRepository.items).toHaveLength(2)
   })
 })
