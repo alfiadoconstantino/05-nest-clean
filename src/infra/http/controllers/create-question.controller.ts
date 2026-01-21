@@ -8,6 +8,7 @@ import { CreateQuestionUseCase } from '@/domain/forum/application/use-cases/crea
 const createQuestionBodySchema = z.object({
   title: z.string(),
   content: z.string(),
+  attachments: z.array(z.string().uuid()),
 })
 
 const validationBody = new ZodValidationPipe(createQuestionBodySchema)
@@ -16,21 +17,21 @@ type CreateQuestionBodySchema = z.infer<typeof createQuestionBodySchema>
 
 @Controller('questions')
 export class CreateQuestionController {
-  constructor(private createQuestion: CreateQuestionUseCase) { } // eslint-disable-line
+  constructor(private createQuestion: CreateQuestionUseCase) {} // eslint-disable-line
 
   @Post()
   async handle(
     @Body(validationBody) body: CreateQuestionBodySchema,
     @CurrentUser() user: TokenPayloadSchema,
   ) {
-    const { title, content } = body
+    const { title, content, attachments } = body
     const userId = user.sub
 
     const result = await this.createQuestion.execute({
       title,
       content,
       authorId: userId,
-      attachmentsIds: [],
+      attachmentsIds: attachments,
     })
 
     if (result.isLeft()) throw new BadRequestException()
