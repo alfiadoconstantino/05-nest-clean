@@ -14,6 +14,8 @@ import { QuestionAttachmentRepository } from '@/domain/forum/application/reposit
 import { AnswersRepository } from '@/domain/forum/application/repositories/answers-repository'
 import { AnswerCommentsRepository } from '@/domain/forum/application/repositories/answer-comments-repository'
 import { AnswerAttachmentRepository } from '@/domain/forum/application/repositories/answer-attachments-repository'
+import { AttachmentRepository } from '@/domain/forum/application/repositories/attachment-repository'
+import { PrismaAttachmentRepository } from './prisma/repositories/prisma-attachment-repository'
 
 @Module({
   providers: [
@@ -46,6 +48,10 @@ import { AnswerAttachmentRepository } from '@/domain/forum/application/repositor
       provide: AnswerAttachmentRepository,
       useClass: PrismaAnswerAttachmentsRepository,
     },
+    {
+      provide: AttachmentRepository,
+      useClass: PrismaAttachmentRepository,
+    },
   ],
   exports: [
     PrismaService,
@@ -56,6 +62,7 @@ import { AnswerAttachmentRepository } from '@/domain/forum/application/repositor
     AnswersRepository,
     AnswerCommentsRepository,
     AnswerAttachmentRepository,
+    AttachmentRepository,
   ],
 })
 // eslint-disable-next-line prettier/prettier

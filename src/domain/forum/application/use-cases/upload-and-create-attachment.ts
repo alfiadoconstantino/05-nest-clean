@@ -3,7 +3,7 @@ import { Injectable } from '@nestjs/common'
 import { InvalidAttachmentTypeError } from './errors/invalid-attachment-type'
 import { Attachment } from '../../enterprise/entities/attachment'
 import { AttachmentRepository } from '../repositories/attachment-repository'
-import type { Uploader } from '../storage/uploader'
+import { Uploader } from '../storage/uploader'
 
 interface UploadAndCreateAttachmentUseCaseRequest {
   filename: string
