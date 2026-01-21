@@ -15,6 +15,7 @@ import { UpdateQuestionUseCase } from '@/domain/forum/application/use-cases/upda
 const editQuestionBodySchema = z.object({
   title: z.string(),
   content: z.string(),
+  attachments: z.array(z.string().uuid()),
 })
 
 const validationBody = new ZodValidationPipe(editQuestionBodySchema)
@@ -32,7 +33,7 @@ export class EditQuestionController {
     @CurrentUser() user: TokenPayloadSchema,
     @Param('id') questionId: string,
   ) {
-    const { title, content } = body
+    const { title, content, attachments } = body
     const userId = user.sub
 
     const result = await this.updateQuestionUseCase.execute({
@@ -40,7 +41,7 @@ export class EditQuestionController {
       title,
       content,
       authorId: userId,
-      attachmentsIds: [],
+      attachmentsIds: attachments,
     })
 
     if (result.isLeft()) throw new BadRequestException()
