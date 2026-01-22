@@ -3,7 +3,7 @@ import { ValueObject } from '@/core/entities/value-object'
 import type { Attachment } from '../attachment'
 import type { Slug } from './slug'
 
-interface QuestionDetailsProps {
+export interface QuestionDetailsProps {
   questionId: UniqueEntityId
   authorId: UniqueEntityId
   author: string

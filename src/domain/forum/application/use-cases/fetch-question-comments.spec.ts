@@ -66,7 +66,6 @@ describe('Fetch Question Comment', () => {
       questionId: 'question-1',
       page: 2,
     })
-
     expect(result.value?.questionComments).toHaveLength(2)
   })
 })

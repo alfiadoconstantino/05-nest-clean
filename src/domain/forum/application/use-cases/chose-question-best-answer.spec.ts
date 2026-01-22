@@ -6,11 +6,15 @@ import { makeQuestion } from 'test/factories/make-question'
 import { NotAllowedError } from '@/core/errors/not-allowed-error'
 import { InMemoryQuestionAttachmentsRepository } from 'test/repositories/in-memory-question-attachments-repository'
 import { InMemoryAnswerAttachmentsRepository } from 'test/repositories/in-memory-answer-attachments-repository'
+import { InMemoryStudentRepository } from 'test/repositories/in-memory-student-repository'
+import { InMemoryAttachmentRepository } from 'test/repositories/in-memory-attachment-repository'
 
 let inMemoryAnswersRepository: InMemoryAnswersRepository
 let inMemoryQuestionRepository: InMemoryQuestionRepository
 let nMemoryQuestionAttachmentsRepository: InMemoryQuestionAttachmentsRepository
 let inMemoryAnswerAttachmentsRepository: InMemoryAnswerAttachmentsRepository
+let inMemoryAttachmentRepository: InMemoryAttachmentRepository
+let inMemoryStudentRepository: InMemoryStudentRepository
 let sut: ChooseQuestionBestAnswerUseCase
 
 describe('Choose Question Best Answer', () => {
@@ -22,8 +26,12 @@ describe('Choose Question Best Answer', () => {
     inMemoryAnswersRepository = new InMemoryAnswersRepository(
       inMemoryAnswerAttachmentsRepository,
     )
+    inMemoryAttachmentRepository = new InMemoryAttachmentRepository()
+    inMemoryStudentRepository = new InMemoryStudentRepository()
     inMemoryQuestionRepository = new InMemoryQuestionRepository(
       nMemoryQuestionAttachmentsRepository,
+      inMemoryAttachmentRepository,
+      inMemoryStudentRepository,
     )
     sut = new ChooseQuestionBestAnswerUseCase(
       inMemoryAnswersRepository,
