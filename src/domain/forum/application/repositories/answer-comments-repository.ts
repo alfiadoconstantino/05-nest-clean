@@ -1,5 +1,6 @@
 import type { PaginationParams } from '@/core/repositories/pagination-params'
 import type { AnswerComment } from '../../enterprise/entities/anser-comment'
+import type { CommentWithAuthor } from '../../enterprise/entities/value-objects/comment-with-author'
 
 export abstract class AnswerCommentsRepository {
   abstract create(answerComment: AnswerComment): Promise<void>
@@ -9,4 +10,9 @@ export abstract class AnswerCommentsRepository {
     answerId: string,
     params: PaginationParams,
   ): Promise<AnswerComment[]>
+
+  abstract findManyByAnswerIdWithAuthor(
+    answerId: string,
+    params: PaginationParams,
+  ): Promise<CommentWithAuthor[]>
 }
