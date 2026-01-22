@@ -1,8 +1,9 @@
 import { left, right, type Either } from '@/core/either'
 import { Notification } from '../../enterprise/entities/notification'
-import type { NotificationRepository } from '../repositories/notification-repository'
+import { NotificationRepository } from '../repositories/notification-repository'
 import { NotAllowedError } from '@/core/errors/not-allowed-error'
 import { ResourceNotFoundError } from '@/core/errors/resources-not-found-error'
+import { Injectable } from '@nestjs/common'
 
 interface ReadNotificationUseCaseRequest {
   recipientId: string
@@ -16,9 +17,10 @@ type ReadNotificationUseCaseResponse = Either<
   }
 >
 
+@Injectable()
 export class ReadNotificationUseCase {
   // eslint-disable-next-line prettier/prettier
-  constructor(private notificationRepository: NotificationRepository) { }
+  constructor(private notificationRepository: NotificationRepository) {}
 
   async execute({
     notificationId,
