@@ -7,6 +7,7 @@ import { PrismaQuestionMapper } from '../mappers/prisma-question-mapper'
 import { QuestionAttachmentRepository } from '@/domain/forum/application/repositories/question-attachments-repository'
 import type { QuestionDetails } from '@/domain/forum/enterprise/entities/value-objects/question-details'
 import { PrismaQuestionDetailsMapper } from '../mappers/prisma-question-details-mapper'
+import { DomainEvents } from '@/core/events/domain-events'
 
 @Injectable()
 export class PrismaQuestionsRepository implements QuestionRepository {
@@ -26,6 +27,8 @@ export class PrismaQuestionsRepository implements QuestionRepository {
     await this.questionAttachmentRepository.createMany(
       question.attachments.getItems(),
     )
+
+    DomainEvents.dispatchEventsForAggregate(question.id)
   }
 
   async findBySlug(slug: string): Promise<Question | null> {
@@ -87,6 +90,8 @@ export class PrismaQuestionsRepository implements QuestionRepository {
         question.attachments.getRemovedItems(),
       ),
     ])
+
+    DomainEvents.dispatchEventsForAggregate(question.id)
   }
 
   async findManyRecent({ page }: PaginationParams): Promise<Question[]> {
