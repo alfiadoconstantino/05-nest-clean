@@ -67,8 +67,8 @@ export class PrismaQuestionsRepository implements QuestionRepository {
     const questionDetails = PrismaQuestionDetailsMapper.toDomain(question)
 
     await this.cacheRepository.set(
-      `question:${question.slug}:details`,
-      JSON.stringify(question),
+      `question:${slug}:details`,
+      JSON.stringify(questionDetails),
     )
 
     return questionDetails
@@ -108,7 +108,7 @@ export class PrismaQuestionsRepository implements QuestionRepository {
       this.questionAttachmentRepository.deleteMany(
         question.attachments.getRemovedItems(),
       ),
-      this.cacheRepository.delete(`question:${question.slug}:details`),
+      this.cacheRepository.delete(`question:${question.slug.value}:details`),
     ])
 
     DomainEvents.dispatchEventsForAggregate(question.id)
